@@ -113,7 +113,7 @@ class Engine {
           meme.style.opacity = '0.6';
           meme.style.width = '375px';
           meme.style.position = 'absolute';
-          meme.style.left = '8px';
+          meme.style.left = '0';
           meme.style.top = '130px';
           this.root.appendChild(meme);
           setTimeout(() => {this.root.removeChild(meme)}, time);

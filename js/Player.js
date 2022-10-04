@@ -45,7 +45,6 @@ class Player {
   }
 
   shoot() {
-    console.log('firin ma lazer')
     this.isFiring = true;
     const animate = setInterval(() => {
       const random = Math.floor(Math.random() * 4 + 1);
@@ -53,7 +52,6 @@ class Player {
     }, 20)
     setTimeout(() => {
       this.isFiring = false;
-      console.log('stopin ma lazer')
       clearInterval(animate);
       this.domElement.src = 'images/player.png'
     }, 500);

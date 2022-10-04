@@ -16,6 +16,10 @@ class Engine {
     this.enemies = [];
     // We add the background image to the game
     addBackground(this.root);
+
+    this.scoreBoard = new Text(this.root, '20px', '20px')
+    this.score = 0;
+    this.scoreBoard.update(`Score: ${this.score}`);
   }
 
   // The gameLoop will run every few milliseconds. It does several things
@@ -54,8 +58,7 @@ class Engine {
       this.enemies.push(new Enemy(this.root, spot));
     }
 
-    // We check if the player is dead. If he is, we alert the user
-    // and return from the method (Why is the return statement important?)
+    // Game Over
     if (this.isPlayerDead()) {
       const playerSprite = this.player.domElement;
       this.root.removeChild(playerSprite);
@@ -78,22 +81,46 @@ class Engine {
       return;
     }
 
+    // Firing logic
     if (this.player.isFiring) {
       const target = this.enemies.find(enemy => enemy.x === this.player.x)
 
       if (target) {
         target.destroyed = true;
         
+        //* Explode ------------------------
         const explosion = document.createElement('img');
         explosion.src = 'images/explosion1.gif';
         explosion.style.position = 'absolute';
-        explosion.style.top = `${target.y + 30}px`;
-        explosion.style.left = `${target.x}px`
+        explosion.style.width = '250px';
+        explosion.style.opacity = '0.6';
+        explosion.style.top = `${target.y}px`;
+        explosion.style.left = `${target.x - 50}px`
         explosion.style.zIndex = '11';
         this.root.appendChild(explosion);
-        setTimeout(() => {this.root.removeChild(explosion)}, 500);
+        setTimeout(() => {this.root.removeChild(explosion)}, 600);
+        //* --------------------------------
 
         this.root.removeChild(target.domElement)
+
+        // Increment score
+        this.score += 1000;
+        this.scoreBoard.update(`Score: ${this.score}`);
+
+        const memeTime = (time) => {
+          const meme = document.createElement('img');
+          meme.src = 'images/timneric.gif';
+          meme.style.opacity = '0.6';
+          meme.style.width = '375px';
+          meme.style.position = 'absolute';
+          meme.style.left = '8px';
+          meme.style.top = '130px';
+          this.root.appendChild(meme);
+          setTimeout(() => {this.root.removeChild(meme)}, time);
+        }
+
+        if (this.score === 5000) {memeTime(1000);}
+        if (this.score === 25000) {memeTime(5000);}
       }
 
 

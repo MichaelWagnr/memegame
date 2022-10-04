@@ -53,14 +53,15 @@ const addBackground = (root) => {
   // We don't want the enemies to go beyond the lower edge of the image
   // so we place a white div to hide the enemies after they reach the bottom.
   // To see what it does, you can comment out all the remaining lines in the function to see the effect.
-  const whiteBox = document.createElement('div');
+  const cover = document.createElement('div');
 
   // We put a high z-index so that the div is placed over all other DOM nodes
-  whiteBox.style.zIndex = 100;
-  whiteBox.style.position = 'absolute';
-  whiteBox.style.top = `${GAME_HEIGHT}px`;
-  whiteBox.style.height = `${ENEMY_HEIGHT}px`;
-  whiteBox.style.width = `${GAME_WIDTH}px`;
-  whiteBox.style.background = '#fff';
-  root.append(whiteBox);
+  cover.style.zIndex = 100;
+  cover.style.position = 'absolute';
+  cover.style.top = `${GAME_HEIGHT}px`;
+  cover.style.height = `${ENEMY_HEIGHT}px`;
+  cover.style.width = `${GAME_WIDTH}px`;
+  cover.className = 'cover'
+  // cover.style.background = '#fff';
+  root.append(cover);
 };

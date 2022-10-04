@@ -41,4 +41,8 @@ class Player {
     }
     this.domElement.style.left = `${this.x}px`;
   }
+
+  shoot() {
+    console.log('firin ma lazer')
+  }
 }

@@ -1,0 +1,11 @@
+:root {
+    --background: #111;
+}
+
+body {
+    background-color: var(--background);
+}
+
+.cover {
+    background-color: var(--background);
+}

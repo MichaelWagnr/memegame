@@ -119,8 +119,8 @@ class Engine {
           setTimeout(() => {this.root.removeChild(meme)}, time);
         }
 
-        if (this.score === 5000) {memeTime(1000);}
-        if (this.score === 25000) {memeTime(5000);}
+        if (this.score === 5000) {memeTime(5000);}
+        if (this.score === 50000) {memeTime(5000);}
       }
 
 

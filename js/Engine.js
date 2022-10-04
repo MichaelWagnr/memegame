@@ -57,7 +57,24 @@ class Engine {
     // We check if the player is dead. If he is, we alert the user
     // and return from the method (Why is the return statement important?)
     if (this.isPlayerDead()) {
-      window.alert('Game over');
+      const playerSprite = this.player.domElement;
+      this.root.removeChild(playerSprite);
+
+      //* Explode ------------------------
+      const explosion = document.createElement('img');
+      explosion.src = 'images/impact.gif';
+      explosion.style.position = 'absolute';
+      explosion.style.top = '265px';
+      explosion.style.left = `${this.player.x - 63}px`
+      explosion.style.zIndex = '11';
+      this.root.appendChild(explosion);
+      setTimeout(() => {this.root.removeChild(explosion)}, 1200);
+      //* --------------------------------
+      
+      setTimeout(() => {
+        window.alert('Game over');
+      }, 2000);
+
       return;
     }
 
@@ -71,7 +88,7 @@ class Engine {
     let isHit = false
     this.enemies.forEach(enemy => {
       // | X HIT RANGE              || Y HIT RANGE                     |            
-      if (enemy.x === this.player.x && enemy.y >= 270 && enemy.y <= 400) {
+      if (enemy.x === this.player.x && enemy.y >= 290 && enemy.y <= 400) {
         isHit = true;
       }   
     })

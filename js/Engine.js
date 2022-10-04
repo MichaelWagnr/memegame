@@ -78,6 +78,27 @@ class Engine {
       return;
     }
 
+    if (this.player.isFiring) {
+      const target = this.enemies.find(enemy => enemy.x === this.player.x)
+
+      if (target) {
+        target.destroyed = true;
+        
+        const explosion = document.createElement('img');
+        explosion.src = 'images/explosion1.gif';
+        explosion.style.position = 'absolute';
+        explosion.style.top = `${target.y + 30}px`;
+        explosion.style.left = `${target.x}px`
+        explosion.style.zIndex = '11';
+        this.root.appendChild(explosion);
+        setTimeout(() => {this.root.removeChild(explosion)}, 500);
+
+        this.root.removeChild(target.domElement)
+      }
+
+
+    }
+
     // If the player is not dead, then we put a setTimeout to run the gameLoop in 20 milliseconds
     setTimeout(this.gameLoop, 20);
   };

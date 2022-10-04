@@ -22,6 +22,8 @@ class Player {
     this.domElement.style.top = ` ${y}px`;
     this.domElement.style.zIndex = '10';
     root.appendChild(this.domElement);
+
+    this.isFiring = false;
   }
 
   // This method will be called when the user presses the left key. See in Engine.js
@@ -44,5 +46,16 @@ class Player {
 
   shoot() {
     console.log('firin ma lazer')
+    this.isFiring = true;
+    const animate = setInterval(() => {
+      const random = Math.floor(Math.random() * 3 + 1);
+      this.domElement.src = `images/p${random}.png`
+    }, 20)
+    setTimeout(() => {
+      this.isFiring = false;
+      console.log('stopin ma lazer')
+      clearInterval(animate);
+      this.domElement.src = 'images/player.png'
+    }, 500);
   }
 }

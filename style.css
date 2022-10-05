@@ -16,6 +16,23 @@ body {
     overflow: hidden;
 }
 
-.cover {
+#screen {
+    position: absolute;
+    top: -25px;
+    left: 0;
+    width: 375px;
+    height: 25px;
+    overflow: hidden;
+    z-index: 10000;
+    background-color: #111;
+    opacity: 0.95;
+    transition: height 0.5s;
+}
+
+#screen.active {
+    height: 525px; 
+}
+
+.cover { /* covers the bottom of the screen */
     background-color: var(--background);
 }

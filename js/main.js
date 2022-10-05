@@ -24,8 +24,21 @@ const keydownHandler = (event) => {
   }
 };
 
+const startGame = (event) => {
+  console.log(event.code);
+  if (event.code === 'Enter') {
+    document.removeEventListener('keydown', startGame);
+    const audio = document.querySelector('#bgm');
+    audio.currentTime = 0;
+    audio.play();
+    gameEngine.gameLoop();
+  }
+
+}
+
 // We add an event listener to document. document the ancestor of all DOM nodes in the DOM.
 document.addEventListener('keydown', keydownHandler);
-
+document.addEventListener('keydown', startGame);
 // We call the gameLoop method to start the game
-gameEngine.gameLoop();
+
+

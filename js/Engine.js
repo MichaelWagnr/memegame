@@ -20,6 +20,8 @@ class Engine {
     this.scoreBoard = new Text(this.root, '20px', '20px')
     this.score = 0;
     this.scoreBoard.update(`Score: ${this.score}`);
+
+    this.sfx = document.querySelector('#sfx2');
   }
 
   // The gameLoop will run every few milliseconds. It does several things
@@ -75,7 +77,7 @@ class Engine {
       //* --------------------------------
       
       setTimeout(() => {
-        window.alert('Game over');
+        window.alert('Game Over!'); 
       }, 2000);
 
       return;
@@ -89,13 +91,16 @@ class Engine {
         target.destroyed = true;
         
         //* Explode ------------------------
+        this.sfx.currentTime = 0;
+        this.sfx.play();
+
         const explosion = document.createElement('img');
         explosion.src = 'images/explosion1.gif';
         explosion.style.position = 'absolute';
-        explosion.style.width = '250px';
+        explosion.style.width = '275px';
         explosion.style.opacity = '0.6';
         explosion.style.top = `${target.y}px`;
-        explosion.style.left = `${target.x - 50}px`
+        explosion.style.left = `${target.x - 70}px`
         explosion.style.zIndex = '11';
         this.root.appendChild(explosion);
         setTimeout(() => {this.root.removeChild(explosion)}, 600);
@@ -107,9 +112,9 @@ class Engine {
         this.score += 1000;
         this.scoreBoard.update(`Score: ${this.score}`);
 
-        const memeTime = (time) => {
+        const memeTime = (time, img) => {
           const meme = document.createElement('img');
-          meme.src = 'images/timneric.gif';
+          meme.src = `images/${img}`;
           meme.style.opacity = '0.6';
           meme.style.width = '375px';
           meme.style.position = 'absolute';
@@ -119,8 +124,13 @@ class Engine {
           setTimeout(() => {this.root.removeChild(meme)}, time);
         }
 
-        if (this.score === 5000) {memeTime(5000);}
-        if (this.score === 50000) {memeTime(5000);}
+        if (this.score === 5000) {memeTime(5000, 'timneric.gif');}
+        if (this.score === 50000) {memeTime(5000, 'timneric.gif');}
+        if (this.score === 9000) {
+          const nine = document.querySelector('#nine');
+          nine.currentTime = 0;
+          nine.play();
+        }
       }
 
 

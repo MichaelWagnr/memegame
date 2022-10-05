@@ -45,11 +45,17 @@ class Player {
   }
 
   shoot() {
+    const sfx = document.querySelector('#sfx')
+    sfx.currentTime = 0;
+    sfx.play();
+
     this.isFiring = true;
     const animate = setInterval(() => {
       const random = Math.floor(Math.random() * 4 + 1);
       this.domElement.src = `images/p${random}.png`
     }, 20)
+
+
     setTimeout(() => {
       this.isFiring = false;
       clearInterval(animate);

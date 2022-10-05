@@ -13,6 +13,7 @@ body {
 
 #app {
     position: relative;
+    overflow: hidden;
 }
 
 .cover {

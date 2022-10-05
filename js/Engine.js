@@ -66,6 +66,9 @@ class Engine {
       this.root.removeChild(playerSprite);
 
       //* Explode ------------------------
+      this.sfx.currentTime = 0;
+      this.sfx.play();
+
       const explosion = document.createElement('img');
       explosion.src = 'images/impact.gif';
       explosion.style.position = 'absolute';
@@ -113,28 +116,31 @@ class Engine {
         this.score += 1000;
         this.scoreBoard.update(`Score: ${this.score}`);
 
-        const memeTime = (time, img) => {
+        const memeTime = (time, img, top = 130) => {
           const meme = document.createElement('img');
           meme.src = `images/${img}`;
           meme.style.opacity = '0.6';
           meme.style.width = '375px';
           meme.style.position = 'absolute';
           meme.style.left = '0';
-          meme.style.top = '130px';
+          meme.style.top = `${top}px`;
           this.root.appendChild(meme);
           setTimeout(() => {this.root.removeChild(meme)}, time);
         }
 
-        if (this.score === 5000) {memeTime(5000, 'timneric.gif');}
-        if (this.score === 50000) {memeTime(5000, 'timneric.gif');}
+        if (this.score === 5000)   {memeTime(5000, 'timneric.gif');}
+        if (this.score === 30000)  {memeTime(5000, 'math.gif');}
+        if (this.score === 60000)  {memeTime(5000, 'timneric.gif');}
+        if (this.score === 90000)  {memeTime(5000, 'blinking.gif', 10);}
+        if (this.score === 120000) {memeTime(5000, 'thumbsup.gif');}
+        if (this.score === 150000) {memeTime(5000, 'yelling.gif');}
+
         if (this.score === 9000) {
           const nine = document.querySelector('#nine');
           nine.currentTime = 0;
           nine.play();
         }
       }
-
-
     }
 
     // If the player is not dead, then we put a setTimeout to run the gameLoop in 20 milliseconds

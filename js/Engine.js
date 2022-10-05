@@ -77,7 +77,8 @@ class Engine {
       //* --------------------------------
       
       setTimeout(() => {
-        window.alert('Game Over!'); 
+        // window.alert('Game Over!');
+        endScreen(this.score); 
       }, 2000);
 
       return;

@@ -1,15 +1,4 @@
-// Elements
-// const root = document.getElementById('app');
-const gameEngine = new Engine(root);
-
-// Startscreen
-// const screen = document.createElement('div');
-// screen.id = 'screen';
-// screen.classList.add('active');
-// root.appendChild(screen);
-
-
-
+const gameEngine = new Engine(document.getElementById('app'));
 
 // Handlers
 const keydownHandler = (event) => {

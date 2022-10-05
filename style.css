@@ -36,3 +36,67 @@ body {
 .cover { /* covers the bottom of the screen */
     background-color: var(--background);
 }
+
+/* ============================ 
+    Screen content 
+============================ */
+
+.container {
+    color: white;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container h1 {
+    font: bold 30px Impact;
+}
+
+.container h2 {
+    font: bold 20px Impact;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.container img {
+    width: 375px;
+}
+
+.container p {
+    padding: 0px 20px;
+}
+
+.container .instructions {
+    margin-top: 3px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+}
+
+span:not(.button) {
+    align-self: center;
+}
+
+span.button {
+    border: 1px solid white;
+    border-radius: 5px;
+    text-align: center;
+}
+
+span.button:not(.arrow) {
+    padding: 4px;
+}
+
+#gameover {
+    font-size: 20px;
+    margin: 40px;
+    text-align: center;
+}
+
+#score-message {
+    margin-top: 0px;
+    padding-top: 1px
+}
+
+
